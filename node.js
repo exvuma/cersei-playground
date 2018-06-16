@@ -9,6 +9,10 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
+    print(req.url)
+    // if req.url.endsWith('api/love'){
+
+    // }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hi pi loves John and john loves my cakes. we could make cupcakes?\n');
