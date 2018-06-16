@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+ 
+<html>
+<head>
+<title>Hello World Template</title>
+</head>
+<body>
+Hello World
+<button></button>
+<button onclick="myFunction()">Click me</button>
+<a href="/api/forward" class="btn btn-block btn-lg btn-default" role="button">Forward</a>
+<a href="/api/cackward" class="btn btn-block btn-lg btn-default" role="button">Backward</a>
+<a href="/api/cleanup" class="btn btn-block btn-lg btn-default" role="button">cleanup</a>
+<br>
+<button onclick="callAPI('forward')" >Forward</button>
+<button onclick="callAPI('backward')" >Backward</button>
+<button onclick="callAPI('cleanup')" >cleanup</button>
+</div>
+</div>
+</body>
+<script>
+        function callAPI(opt){
+                const url = "/api/" + opt
+                fetch(url)
+                .then((e) => {
+                        if(e.ok) console.log("success")
+                        else console.log("fail")
+
+                })
+                .catch(()=>{
+                        console.log("fail")
+                })
+        }
+</script>
+</html>
