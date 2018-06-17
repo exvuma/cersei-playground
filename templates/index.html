@@ -3,21 +3,27 @@
  
 <html>
 <head>
-<title>Hello World Template</title>
+<title>Cersei's Playground</title>
+<link rel="stylesheet" href="static/index.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-Hello World
-<button></button>
-<button onclick="myFunction()">Click me</button>
-<a href="/api/forward" class="btn btn-block btn-lg btn-default" role="button">Forward</a>
-<a href="/api/cackward" class="btn btn-block btn-lg btn-default" role="button">Backward</a>
-<a href="/api/cleanup" class="btn btn-block btn-lg btn-default" role="button">cleanup</a>
-<br>
-<button onclick="callAPI('forward')" >Forward</button>
-<button onclick="callAPI('backward')" >Backward</button>
-<button onclick="callAPI('cleanup')" >cleanup</button>
-</div>
-</div>
+        <div class="container">
+                <h1> Welcome to Cersei's Playground</h1>
+                <br>
+                <button class="forward round" onclick="callAPI('forward')" >&#8250;</button>
+                <button class="backward round" onclick="callAPI('backward')" >&#8249;</button>
+                <button class="stop round " onclick="callAPI('halt')" >Halt</a>
+                <button class="stop round " onclick="callAPI('cleanup')" >Clean</button>
+
+        </div>
 </body>
 <script>
         function callAPI(opt){
