@@ -33,6 +33,15 @@ def backward():
     GPIO.output(Motor1B,GPIO.HIGH)
     GPIO.output(Motor1E,GPIO.HIGH)
     return 'Hi mr.Backward'
+
+@app.route('/api/halt')
+def halt():
+    # GPIO.setmode(GPIO.BOARD)    
+    GPIO.output(Motor1A,GPIO.LOW)
+    GPIO.output(Motor1B,GPIO.LOW)
+    GPIO.output(Motor1E,GPIO.LOW)
+    return 'Hi mr.halt'
+    
 @app.route('/api/cleanup')
 def cleanup():
     GPIO.cleanup()
