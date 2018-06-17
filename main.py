@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 import RPi.GPIO as GPIO
 import json as JSON 
+import os
 from time import sleep
+static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
 app = Flask(__name__)
 Motor1A = 16
 Motor1B = 15
@@ -46,6 +48,16 @@ def halt():
 def cleanup():
     GPIO.cleanup()
     return '{"success":"true", "msg":"Cleanup complete"}'
+    
+
+@app.route('/dir/<path:path>', methods=['GET'])
+def serve_file_in_dir(path):
+ 
+    if not os.path.isfile(os.path.join(static_file_dir, path)):
+        path = os.path.join(path, 'index.html')
+ 
+    return send_from_directory(static_file_dir, path)
+
 # RPi.GPIO provides a built-in function GPIO.cleanup() to clean up all the
 # ports you've used. But be very clear what this does. It only affects any
 # ports you have set in the current program. It resets any ports you have used 
