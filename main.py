@@ -44,6 +44,16 @@ def halt():
     GPIO.output(Motor1E,GPIO.LOW)
     return 'Hi mr.halt'
     
+@app.route('/api/pin/<int:pin>')
+def lightUpPin(pin):
+    # GPIO.setmode(GPIO.BOARD)    
+    GPIO.setup(pin,GPIO.OUT)
+    GPIO.output(pin,GPIO.HIGH)
+    sleep(5)
+    GPIO.output(pin,GPIO.LOW)
+    return 'whatever'
+
+
 @app.route('/api/cleanup')
 def cleanup():
     GPIO.cleanup()
