@@ -1,12 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 import RPi.GPIO as GPIO
 import json as JSON 
 import os
 from time import sleep
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
 app = Flask(__name__)
-Motor1A = 16
-Motor1B = 15
+from camera import Camera
+Motor1A = 10
+Motor1B = 36
 Motor1E = 22
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(Motor1A,GPIO.OUT)
