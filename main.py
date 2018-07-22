@@ -5,7 +5,6 @@ import os
 from time import sleep
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static')
 app = Flask(__name__)
-from camera import Camera
 Motor1A = 10
 Motor1B = 36
 Motor1E = 22
