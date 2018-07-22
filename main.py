@@ -1,5 +1,4 @@
 from flask import Flask, render_template, Response
-import RPi.GPIO as GPIO
 import json as JSON 
 import os
 from time import sleep
@@ -8,12 +7,32 @@ app = Flask(__name__)
 Motor1A = 10
 Motor1B = 36
 Motor1E = 22
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(Motor1A,GPIO.OUT)
-GPIO.setup(Motor1B,GPIO.OUT)
-GPIO.setup(Motor1E,GPIO.OUT)
+try:
+    os.environ['pi2']
+    import RPi.GPIO as GPIO
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(Motor1A,GPIO.OUT)
+    GPIO.setup(Motor1B,GPIO.OUT)
+    GPIO.setup(Motor1E,GPIO.OUT)
+except KeyError:
+    import myGPIO as GPIOmod
+    GPIO = GPIOmod.GPIO()
 
+#######################   
+##### Camera #########
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+@app.route('/camera', methods=['GET'])
+def camera():
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+#######################
+##### Routes ######
 @app.route('/')
 def index():
     # GPIO.setmode(GPIO.BOARD)/\
@@ -23,7 +42,9 @@ def index():
 @app.route('/api/forward')
 def forward():
     # GPIO.setmode(GPIO.BOARD)
+    print(GPIO.HIGH)
     GPIO.output(Motor1A,GPIO.HIGH)
+    # GPIO.output(Motor1A)
     GPIO.output(Motor1B,GPIO.LOW)
     GPIO.output(Motor1E,GPIO.HIGH)
     return 'Hi mr.Forward'
