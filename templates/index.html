@@ -18,11 +18,18 @@
         <div class="container">
                 <h1> Welcome to Cersei's Playground</h1>
                 <br>
-                <button class="forward round" onclick="callAPI('forward')" >&#8250;</button>
-                <button class="backward round" onclick="callAPI('backward')" >&#8249;</button>
-                <button class="stop round " onclick="callAPI('halt')" >Halt</a>
-                <button class="stop round " onclick="callAPI('cleanup')" >Clean</button>
+                <div class="row">
+                 <h2> Live Stream you bet</h2>
+                </div>
+                <div class ="row">
+                        <button class="backward round" onclick="callAPI('backward')" >&#8249;</button>
+                        <img src="http://192.168.86.23:8000/stream.mjpg" width="640" height="480" />
+                        <button class="forward round" onclick="callAPI('forward')" >&#8250;</button>
+                </div>                       
+                        <button class="stop round " onclick="callAPI('halt')" >Halt</a>
+                        <button class="stop round " onclick="callAPI('cleanup')" >Clean</button><br>
 
+                </div>
         </div>
 </body>
 <script>
